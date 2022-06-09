@@ -10,13 +10,6 @@ def create_event():
     labels = ['legit', 'fraud'],
     entityTypes = ['customer'])
 
-def delete_event():
-    fraudDetector.delete_event_type(name='transaction_event')
-
-def delete_event_status():
-    response = fraudDetector.get_delete_events_by_event_type_status(eventTypeName='transaction_event')
-    print(response)
-
 def upload_event_data():
     fraudDetector.create_batch_import_job (
     jobId = 'batch_import',
@@ -25,3 +18,10 @@ def upload_event_data():
     eventTypeName = 'transaction_event',
     iamRoleArn = 'arn:aws:iam::163076715085:role/service-role/AmazonFraudDetector-DataAccessRole-1654473179346'
     )
+
+def delete_event():
+    fraudDetector.delete_event_type(name='transaction_event')
+
+def delete_event_status():
+    response = fraudDetector.get_delete_events_by_event_type_status(eventTypeName='transaction_event')
+    print(response)
