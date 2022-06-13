@@ -34,3 +34,10 @@ def get_model_version():
     modelType='TRANSACTION_FRAUD_INSIGHTS',
     modelVersionNumber='1.0')
     print(response)
+
+def activate_model():
+    fraudDetector.update_model_version_status (
+    modelId = 'transaction_model',
+    modelType = 'TRANSACTION_FRAUD_INSIGHTS',
+    modelVersionNumber = '1.0',
+    status = 'ACTIVE')

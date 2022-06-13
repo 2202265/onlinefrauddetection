@@ -5,8 +5,4 @@ from packages import createmodel
 from packages import trainmodel
 
 
-import boto3
-fraudDetector = boto3.client('frauddetector')
-
-response = fraudDetector.get_detectors()
-print(response)
+trainmodel.get_model_version()
