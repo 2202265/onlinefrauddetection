@@ -1,6 +1,12 @@
 import boto3
 fraudDetector = boto3.client('frauddetector')
 
+def createmodel():
+    fraudDetector.create_model (
+    modelId = 'transaction_model',
+    eventTypeName = 'transaction_event',
+    modelType = 'TRANSACTION_FRAUD_INSIGHTS',
+    description= 'Model for fraud detection of online transaction')
 
 def train_model():
     response = fraudDetector.create_model_version (
@@ -35,9 +41,27 @@ def get_model_version():
     modelVersionNumber='1.0')
     print(response)
 
+def update_model_version_status(model_id,model_type,version_id,model_status):
+    fraudDetector.update_model_version_status(
+    modelId = model_id,
+    modelType = model_type,
+    modelVersionNumber = version_id,
+    status = model_status)
+
 def activate_model():
     fraudDetector.update_model_version_status (
     modelId = 'transaction_model',
     modelType = 'TRANSACTION_FRAUD_INSIGHTS',
     modelVersionNumber = '1.0',
     status = 'ACTIVE')
+
+def delete_model_version(model_id,model_type,version_id):
+    fraudDetector.delete_model_version(
+    modelId = model_id,
+    modelType = model_type,
+    modelVersionNumber = version_id)
+
+def delete_model(model_id,model_type):
+    fraudDetector.delete_model(
+    modelId = model_id,
+    modelType = model_type)

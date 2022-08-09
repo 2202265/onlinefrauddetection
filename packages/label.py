@@ -10,3 +10,6 @@ def create_label_legit():
     fraudDetector.put_label(
     name='legit',
     description='label for legitimate events')
+
+def delete_label(label_name):
+    fraudDetector.delete_label(name=label_name)

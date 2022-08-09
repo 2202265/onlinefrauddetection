@@ -19,9 +19,15 @@ def upload_event_data():
     iamRoleArn = 'arn:aws:iam::163076715085:role/service-role/AmazonFraudDetector-DataAccessRole-1654473179346'
     )
 
-def delete_event():
-    fraudDetector.delete_event_type(name='transaction_event')
+def delete_event(event_name):
+    fraudDetector.delete_event_type(name=event_name)
 
-def delete_event_status():
-    response = fraudDetector.get_delete_events_by_event_type_status(eventTypeName='transaction_event')
+def delete_event_type(event_name):
+    fraudDetector.delete_events_by_event_type(eventTypeName=event_name)
+
+def delete_event_status(event_name):
+    response = fraudDetector.get_delete_events_by_event_type_status(eventTypeName=event_name)
     print(response)
+
+def delete_event_job_data(job_id):
+    fraudDetector.delete_batch_import_job(jobId=job_id)
