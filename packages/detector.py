@@ -4,7 +4,7 @@ fraudDetector = boto3.client('frauddetector')
 
 def create_detector():
     fraudDetector.put_detector (
-    detectorId = 'online_transaction',
+    detectorId = 'transaction_fraud_detector',
     description='fraud detection of online transaction',
     eventTypeName = 'transaction_event')
 
@@ -15,21 +15,21 @@ def delete_detector(detector_id):
 
 def create_detector_version():
     fraudDetector.create_detector_version(
-    detectorId='online_transaction',
+    detectorId='transaction_fraud_detector',
     description='Fraud detector for online transaction',
     rules=[
         {
-            'detectorId': 'online_transaction',
+            'detectorId': 'transaction_fraud_detector',
             'ruleId': 'decline_rule',
             'ruleVersion': '1'
         },
         {
-            'detectorId' : 'online_transaction',
+            'detectorId' : 'transaction_fraud_detector',
             'ruleId' : 'friction_rule',
             'ruleVersion' : '1'
         },
         {
-            'detectorId' : 'online_transaction',
+            'detectorId' : 'transaction_fraud_detector',
             'ruleId' : 'approve_rule',
             'ruleVersion' : '1'
         }
@@ -47,7 +47,7 @@ def create_detector_version():
 
 def update_detector_version_status(status_name):
     fraudDetector.update_detector_version_status(
-    detectorId='online_transaction',
+    detectorId='transaction_fraud_detector',
     detectorVersionId='1',
     status=status_name
     )

@@ -4,7 +4,7 @@ fraudDetector = boto3.client('frauddetector')
 def create_rule():
     fraudDetector.create_rule(
     ruleId = 'decline_rule',
-    detectorId = 'online_transaction',
+    detectorId = 'transaction_fraud_detector',
     description='block transaction when the score is 950 or above',
     expression = '$transaction_model_insightscore >= 950',
     language = 'DETECTORPL',
@@ -12,7 +12,7 @@ def create_rule():
     )
     fraudDetector.create_rule(
     ruleId = 'friction_rule',
-    detectorId = 'online_transaction',
+    detectorId = 'transaction_fraud_detector',
     description='Review the transaction when the score is 855 or above and below 950',
     expression = '$transaction_model_insightscore >= 855 and $transaction_model_insightscore < 950',
     language = 'DETECTORPL',
@@ -20,7 +20,7 @@ def create_rule():
     )
     fraudDetector.create_rule(
     ruleId = 'approve_rule',
-    detectorId = 'online_transaction',
+    detectorId = 'transaction_fraud_detector',
     description='approve transaction when the score is below 855',
     expression = '$transaction_model_insightscore < 855',
     language = 'DETECTORPL',
