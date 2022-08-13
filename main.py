@@ -84,4 +84,4 @@ from packages import prediction
 
 
 # First fraud_prediction
-prediction.payment_transaction()
+# prediction.payment_transaction()
